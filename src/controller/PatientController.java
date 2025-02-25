@@ -18,6 +18,12 @@ public class PatientController {
         return patientService.getAllPatients();
     }
 
+    // GET API - Fetch patient by ID
+    @GetMapping("/{id}")
+    public PatientDTO getPatientById(@PathVariable Long id) {
+        return patientService.getPatientById(id);
+    }
+
     // POST API - Add a new patient
     @PostMapping
     public PatientDTO addPatient(@RequestBody PatientDTO patientDTO) {

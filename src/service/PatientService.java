@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.Optional;
 
 @Service
 public class PatientService {
@@ -27,6 +28,11 @@ public class PatientService {
         return patientRepository.findAll().stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
+    }
+
+    public PatientDTO getPatientById(Long id) {
+        Optional<Patient> patient = patientRepository.findById(id);
+        return patient.map(this::convertToDTO).orElse(null);
     }
 
     // Add a new patient
